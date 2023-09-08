@@ -1,0 +1,134 @@
+import java.util.*;
+
+
+
+public class prim {
+
+
+
+    public static void primMST(int adj[][], int N) {
+
+        int[] parent = new int[N];
+
+        int[] key = new int[N];
+
+        boolean[] MST = new boolean[N];
+
+
+
+        for (int i = 0; i < N; i++) {
+
+            key[i] = Integer.MAX_VALUE;
+
+            MST[i] = false;
+
+        }
+
+
+
+        key[0] = 0;
+
+        parent[0] = -1;
+
+
+
+        for (int count = 0; count < N - 1; count++) {
+
+            int u = -1;
+
+            for (int v = 0; v < N; v++) {
+
+                if (!MST[v] && (u == -1 || key[v] < key[u])) {
+
+                    u = v;
+
+                }
+
+            }
+
+
+
+            MST[u] = true;
+
+
+
+            for (int v = 0; v < N; v++) {
+
+                if (adj[u][v] != 0 && !MST[v] && adj[u][v] < key[v]) {
+
+                    parent[v] = u;
+
+                    key[v] = adj[u][v];
+
+                }
+
+            }
+
+        }
+
+
+
+        int minCost = 0;
+
+        System.out.println("Edges in the MST:");
+
+        for (int i = 1; i < N; i++) {
+
+            System.out.println(parent[i] + " - " + i + " : (" + adj[parent[i]][i] + ")");
+
+            minCost = minCost + adj[parent[i]][i];
+
+        }
+
+
+
+        System.out.println("Minimum Cost: " + minCost);
+
+    }
+
+
+
+    public static void main(String[] args) {
+
+        int adj[][];
+
+        int N;
+
+        Scanner sc = new Scanner(System.in);
+
+
+
+        System.out.print("Enter the number of nodes in the graph: ");
+
+        N = sc.nextInt();
+
+
+
+        adj = new int[N][N];
+
+        System.out.println("Enter the adjacency matrix:");
+
+        for (int i = 0; i < N; i++) {
+
+            for (int j = 0; j < N; j++) {
+
+                adj[i][j] = sc.nextInt();
+
+                if (adj[i][j] == 0) {
+
+                    adj[i][j] = 999;
+
+                }
+
+            }
+
+        }
+
+
+
+        primMST(adj, N);
+
+    }
+
+}
+
