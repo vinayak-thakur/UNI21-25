@@ -53,7 +53,7 @@ for i in range(n):
 choice = int(input("Enter 1 for insertion and 2 for merge: "))
 
 if choice == 1:
-  arr = insertion_sort(arr)
+  insertion_sort(arr)
 else:
   arr = merge_sort(arr)
 
