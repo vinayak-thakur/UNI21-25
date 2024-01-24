@@ -39,5 +39,6 @@ Customer));
 create view highest_order As (select Salesman_id,Ord_date,Purchase_Amt from ORDERS
 where(Ord_date,Purchase_Amt)IN (Select Ord_date,Max(Purchase_Amt) from ORDERS group
 by Ord_date));
+select *from highest_order;
 
 Delete from SALESMAN where Salesman_id=1000;
