@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <title>Program10</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    </head>
+    <body ng-app="ItemManage">
+        <h1>Item Management</h1>
+        <div ng-controller="ItemManageCtrlr">
+            Enter item to add: <input type="text" ng-model="items"><br>
+            <input type="button" value="ADD" ng-click="addItems()">
+
+            <h3>List of items: </h3>
+            <table border="1">
+                <tr>
+                    <th>Slno</th>
+                    <th>Items</th>
+                    <th>Action</th>
+                </tr>
+                <tr ng-repeat="i in itemlist">
+                    <td>{{$index+1}}</td>
+                    <td>{{i}}</td>
+                    <td><input type="button" value="REMOVE" ng-click="removeItems(i)"></td>
+                </tr>
+            </table>
+            <br>
+            Total number of items::{{itemlist.length}}
+        </div>
+    </body>
+</html>
+<script>
+    var ang = angular.module("ItemManage", []);
+    ang.controller("ItemManageCtrlr", function($scope){
+        $scope.itemlist = ["Marker", "Eraser"];
+        $scope.addItems = function(){
+            if($scope.items && $scope.itemlist.indexOf($scope.items) == -1){
+                $scope.itemlist.push($scope.items);
+                $scope.items = "";
+            }
+            else{
+                if($scope.items){
+                    alert("Item already in list");
+                    return;
+                }
+                else{
+                    alert("Enter an item to add.");
+                    return;
+                }
+            }
+        }
+
+        $scope.removeItems = function(item){
+            var verify = confirm("Are you sure you want to delete this item?");
+            if(verify){
+                var idx = $scope.itemlist.indexOf(item);
+                $scope.itemlist.splice(idx,1);
+            }
+        }
+    })
+</script>

@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <title>Program9</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    </head>
+    <body ng-app="searchEmp">
+        <h1>Search employee by name and salary</h1>
+        <div ng-controller="searchEmpCtrlr">
+            Enter name: <input type="text" ng-model="eName">
+            Enter salary: <input type="text" ng-model="eSalary">
+
+            <input type="button" value="Clear" ng-click="clearFilter">
+
+            <h3>List of Employees</h3>
+            <table border="1">
+                <tr>
+                    <th>Slno</th>
+                    <th>Name</th>
+                    <th>Salary</th>
+                </tr>
+                <tr ng-repeat="empl in employees | filter: {name: eName, salary: eSalary}">
+                    <td>{{$index+1}}</td>
+                    <td>{{empl.name}}</td>
+                    <td>{{empl.salary}}</td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>
+<script>
+    var ang = angular.module("searchEmp", []);
+    ang.controller("searchEmpCtrlr", function($scope){
+        $scope.employees = [
+            {"name": "Utsab", "salary": 18000},
+            {"name": "Yogesh", "salary": 20000},
+            {"name": "Pratyush", "salary": 16000},
+            {"name": "Sahid", "salary": 25000},
+            {"name": "Sovit", "salary": 12000},
+        ]
+
+        $scope.clearFilter = function(){
+            $scope.eName = "";
+            $scope.eSalary = "";
+        }
+    })
+</script>

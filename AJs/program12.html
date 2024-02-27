@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <title>Program9</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    </head>
+    <body ng-app="caseConv">
+        <h1>Date</h1>
+        <div ng-controller="caseConvContr">
+            The date and time now is : {{todaysDate}} <br>
+            Short date: {{todaysDate | date: 'short'}} <br>
+            Long date: {{todaysDate | date: 'fullDate'}} <br>
+            Medium date: {{todaysDate | date: 'medium'}}
+        </div>
+    </body>
+</html>
+<script>
+    var ang = angular.module("caseConv", []);
+    ang.controller("caseConvContr", function($scope){
+        $scope.todaysDate = new Date();
+    })
+</script>

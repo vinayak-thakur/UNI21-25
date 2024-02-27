@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <title>Program9</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    </head>
+    <body ng-app="caseConv">
+        <h1>Convert student details to lowercase and uppercase</h1>
+        <div ng-controller="caseConvContr">
+            <input type="button" value="Upper" ng-click="toUpper()">
+            <input type="button" value="Lower" ng-click="toLower()"><br><br>
+
+            <table border="1">
+                <tr>
+                    <th>Slno</th>
+                    <th>Name</th>
+                </tr>
+                <tr ng-repeat="student in studentDetails">
+                    <td>{{$index+1}}</td>
+                    <td ng-show="to_upper">{{student|uppercase}}</td>
+                    <td ng-show="to_lower">{{student|lowercase}}</td>
+                </tr>
+            </table>
+
+        </div>
+    </body>
+</html>
+<script>
+    var ang = angular.module("caseConv", []);
+    ang.controller("caseConvContr", function($scope){
+        $scope.studentDetails = ["Utsab", "Pratyush","Yogesh"]
+        $scope.to_upper = true;
+        $scope.to_lower = false;
+
+        $scope.toUpper = function(){
+            $scope.to_upper = true;
+            $scope.to_lower = false;
+        }
+
+        $scope.toLower = function(){
+            $scope.to_upper = false;
+            $scope.to_lower = true;
+        }
+    })
+</script>
