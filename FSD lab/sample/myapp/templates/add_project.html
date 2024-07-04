@@ -1,0 +1,16 @@
+<html>
+    <body>
+        <h1> submit your project details here </h1>
+        <form method= "POST">
+            {% csrf_token %}
+            {{openAddProjDetsForm.as_p}}
+            <table>
+                <tr>
+                    <td>
+                        <input type="submit" value="Add"/>
+                    </td>
+                </tr>
+                </table>
+                </form>
+                </body>
+                </html>
