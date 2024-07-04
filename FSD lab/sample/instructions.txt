@@ -1,0 +1,8 @@
+1 . edit models.py and add the code
+2 register app and templates in settings.py
+3. make migrations and migrate
+4. views.py add the code 
+5. make templtes folder and add html file in it 
+6 create a superuser by python manage.py create superuser
+7  admin.py register the models in it
+8. go to django admin and register students there and we can add projects to the students using frontend 
